@@ -1,0 +1,49 @@
+@import "tailwindcss";
+
+@layer utilities {
+    .align-vertical {
+        @apply flex flex-col;
+    }
+}
+@layer components {
+    .main-auth {
+        @apply min-h-screen w-full flex justify-center items-center;
+    }
+
+    .main-auth h1 {
+        @apply text-3xl font-bold;
+    }
+
+    .main-auth form{
+        @apply flex flex-col xl:w-[20vw] w-full;
+    }
+
+    .main-auth .input-group {
+        @apply flex flex-col gap-1;
+    }
+    
+    .main-auth input {
+        @apply bg-white text-[#161616]  border-none outline-none px-3 py-1.5 rounded-md w-full;
+    }
+
+    .main-auth input::placeholder {
+        @apply text-gray-500;
+    }
+
+    .button {
+        @apply w-full bg-[#e1034d] text-white border-none rounded-md px-3 py-1.5 mt-5 cursor-pointer;
+    }
+
+    a {
+        @apply text-[#e1034d]
+    }
+}
+.button {
+    transition: all 0.3s ease-in-out;
+}
+.button:active {
+    transform: scale(0.98);
+    background-color: #700025;
+    color: #d2d2d2;
+}
+
