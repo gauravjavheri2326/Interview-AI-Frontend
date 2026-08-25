@@ -3,8 +3,8 @@ import { Link } from 'react-router'
 import "../auth.form.css"
 import { useAuth } from '../hooks/useAuth'
 import { useNavigate } from 'react-router'
-import { Loader } from 'lucide-react'
-import { TriangleAlert } from 'lucide-react'
+import { Loader, EyeOff, Eye, TriangleAlert } from 'lucide-react'
+
 
 const Login = () => {
 
@@ -14,6 +14,7 @@ const Login = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
+  const [showPass, setShowPass] = useState(false)
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -58,17 +59,37 @@ const Login = () => {
               </div>
 
               <div className="input-group">
+
                 <label htmlFor="password">Password</label>
-                <input 
-                  type="password" 
-                  id='password' 
-                  name='password' 
-                  placeholder='Enter password'
-                  value={password}
-                  onChange={(e) => {
-                    setPassword(e.target.value)
-                  }} 
-                />
+                <div className="flex">
+                  <input
+                    type={ showPass ? "text" : "password"}
+                    id='password'
+                    name='password'
+                    placeholder='Enter password'
+                    className='rounded-r-none'
+                    value={password}
+                    onChange={(e) => {
+                      setPassword(e.target.value)
+                    }}
+                  />
+
+                  <label htmlFor="showPass" className='px-3 py-1.5 flex-center bg-white rounded-r-md text-[#E61E50]'>
+                    {
+                      showPass ? <Eye /> : <EyeOff />
+                    }
+                  </label>
+                  <input 
+                    type="checkbox" 
+                    name="showPass" 
+                    id="showPass" 
+                    hidden 
+                    onChange={() => {
+                      setShowPass(!showPass)
+                    }}
+                  />
+                </div>
+
               </div>
               
               <button className='button'>Login</button>
