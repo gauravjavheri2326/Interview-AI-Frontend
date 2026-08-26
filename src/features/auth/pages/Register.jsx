@@ -1,38 +1,42 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { Link } from 'react-router'
 import "../auth.form.css"
 import { useAuth } from '../hooks/useAuth'
 import { useNavigate } from 'react-router'
 import { Loader, EyeOff, Eye, TriangleAlert } from 'lucide-react'
+import { MsgContext } from '../../display message/message.context'
+import DisplayMsg from '../../display message/components/DisplayMsg'
 
 
 const Register = () => {
 
   const { loading, handleRegister } = useAuth()
   const navigate = useNavigate()
+
+  const msgContext = useContext(MsgContext)
+  const { setStatus, setMsg } = msgContext
   
   const [username, setUsername] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const [error, setError] = useState('')
   const [showPass, setShowPass] = useState(false)
 
   const handleSubmit = async (e) => {
     e.preventDefault()
     try {
-      await handleRegister({ username, email, password })
+      const data = await handleRegister({ username, email, password })
       navigate('/')
       setUsername('')
       setEmail('')
       setPassword('')
-
+      setMsg(data.message) 
     } catch (err) {
-      setError(err.response?.data?.message)
+      console.log(err.response?.data?.message);
+      setMsg(err.response?.data?.message)
+      setStatus(err.response?.status)
     }
 
-    setTimeout(() => {
-      setError("")
-    }, 3000)
+    
   }
 
   if(loading) {
@@ -41,6 +45,7 @@ const Register = () => {
 
   return (
     <main className='main-auth'>
+      <DisplayMsg/>
       <div className='flex flex-col gap-5'>
         <h1>Register</h1>
 
@@ -112,13 +117,6 @@ const Register = () => {
         <p>Already have an account? <Link to={"/login"}>Log in</Link></p>
       </div>
 
-      <div className={`absolute bottom-30 flex bg-[#e61e503a] text-[#E61E50] gap-[.5vw] px-8 py-1 rounded-xl ${error ?
-          "block" :
-          "hidden"
-        }`}>
-        <TriangleAlert className='scale-80' />
-        <p>{error}</p>
-      </div>
     </main>
   )
 }

@@ -30,7 +30,7 @@ export async function login({ email, password }) {
         })
 
         // console.log(response.data)
-        return response.data
+        return response.data 
     }catch(err){
         // console.log(err.response?.data)  
         throw err
@@ -42,7 +42,7 @@ export async function login({ email, password }) {
 export async function logout() {
 
     try{
-        const respose = await api.get("/api/auth/logout", {
+        const response = await api.get("/api/auth/logout", {
             withCredentials: true
         })
         console.log(response.data)

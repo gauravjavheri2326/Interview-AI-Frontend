@@ -1,13 +1,18 @@
 import { useContext } from "react"
 import { AuthContext } from "../auth.context"
 import { login, register, logout, getMe } from "../services/auth.api"
+import { MsgContext } from "../../display message/message.context"
 
 export const useAuth = () => {
+
+    const msgContext = useContext(MsgContext)
+    const { setStatus, setMsg } = msgContext
+    
 
     const context = useContext(AuthContext)
     const { user, setUser, loading, setLoading } = context
 
-    const handleLogin = async ({ email, password, setMessage }) => {
+    const handleLogin = async ({ email, password }) => {
         setLoading(true)
         try{
             const data = await login({ email, password })
@@ -40,6 +45,7 @@ export const useAuth = () => {
         try {
             const data = await logout()   
             setUser(null)
+            setMsg(data.message)
         } catch (err) {
             
         } finally { 

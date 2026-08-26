@@ -1,12 +1,14 @@
 import { useContext } from "react"
 import { getAllInterviewReports, generateInterviewReport, getInterviewReportById } from "../services/interview.api.js"
 import { InterviewContext } from "../interview.context.jsx"
+import { MsgContext } from "../../display message/message.context.jsx"
 
 
 export const useInterview = () => {
     
     const context = useContext(InterviewContext)
-    
+    const msgContext = useContext(MsgContext)
+    const { setStatus, setMsg } = msgContext
     if (!context) {
         throw new Error("useInterview must be used within an InterviewPovider")
     }
@@ -19,14 +21,16 @@ export const useInterview = () => {
         try {
             response = await generateInterviewReport({ jobDescription, selfDescription, resumeFile })
             setReport(response.interviewReport)
+            
         } catch (err) {
+            setMsg(err.response?.data?.message)
             throw(err)
-            console.log(err.response?.data?.message)
+            
         } finally {
             setLoading(false)
         }
         
-        return response.interviewReport
+        return response.message
     }
 
     const getReportById = async (interviewId) => {

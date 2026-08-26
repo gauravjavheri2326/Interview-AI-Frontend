@@ -1,10 +1,15 @@
-import React, { useRef, useState } from 'react'
+import React, { useContext, useRef, useState } from 'react'
 import { CloudUpload, MoveRight, CircleUserRound, FolderCheck, Loader } from 'lucide-react'
 import { useInterview } from '../hooks/useInterview'
 import { useNavigate } from 'react-router'
 import { useAuth } from '../../auth/hooks/useAuth'
+import DisplayMsg from '../../display message/components/DisplayMsg'
+import { MsgContext } from '../../display message/message.context'
 
 const Home = () => {
+
+    const msgContext = useContext(MsgContext)
+    const { setStatus, setMsg } = msgContext
 
     const { loading, generateReport } = useInterview()
     const [jobDescription, setJobDescription] = useState("")
@@ -18,18 +23,20 @@ const Home = () => {
         const resumeFile = resumeInputRef.current.files[0]
 
                 const data = await generateReport({ jobDescription, selfDescription, resumeFile })
-
+                setMsg(data)
                 navigate(`/interview/${data._id}`)
             
     }
+
 
     
 
   return (
     // pending responsive
     <main className="home-main min-h-screen w-full flex lg:items-center lg:justify-center flex-col lg:gap-5 md:gap-[3vw] gap-[5vw] relative lg:py-0 md:py-[10vw] py-[20vw]">
-
-        <div className='w-full h-[3vw] absolute lg:top-0 top-[3.3vw] flex items-center justify-between 2xl:px-10 px-2'>
+        <DisplayMsg/>
+        
+        <div className='w-full h-[3vw] absolute z-1  lg:top-0 top-[3.3vw] flex items-center justify-between 2xl:px-10 px-2'>
             <div className='flex items-center h-full gap-1 text-[#FFDADB] text-lg'>
                 <CircleUserRound size={22} color="#E61E50" />
                 <h3>{user.username}</h3>
