@@ -24,6 +24,7 @@ export const useInterview = () => {
             
         } catch (err) {
             setMsg(err.response?.data?.message)
+            setStatus(err.response?.status)
             throw(err)
             
         } finally {
