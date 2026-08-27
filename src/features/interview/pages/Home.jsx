@@ -9,7 +9,7 @@ import { MsgContext } from '../../display message/message.context'
 const Home = () => {
 
     const msgContext = useContext(MsgContext)
-    const { setStatus, setMsg } = msgContext
+    const { setMsg } = msgContext
 
     const { loading, generateReport } = useInterview()
     const [jobDescription, setJobDescription] = useState("")
@@ -22,9 +22,9 @@ const Home = () => {
     const handleGenerateReport = async () => {
         const resumeFile = resumeInputRef.current.files[0]
 
-                const data = await generateReport({ jobDescription, selfDescription, resumeFile })
-                setMsg(data)
-                navigate(`/interview/${data._id}`)
+        const data = await generateReport({ jobDescription, selfDescription, resumeFile })
+        
+        navigate(`/interview/${data._id}`)
             
     }
 

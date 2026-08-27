@@ -1,6 +1,6 @@
 import React from 'react'
 import NavbarLink from './NavbarLink'
-import { LayoutGrid, Code, Handshake, NotebookPen } from 'lucide-react'
+import { LayoutGrid, Code, Handshake, NotebookPen, LogOut } from 'lucide-react'
 
 const InterviewNav = () => {
   const navData = [
@@ -24,6 +24,10 @@ const InterviewNav = () => {
       name: "Preparation Plan",
       link: "preparation plan",
       icon: NotebookPen
+    },{
+      name: "Exit",
+      link: "/",
+      icon: LogOut
     }
   ]
 

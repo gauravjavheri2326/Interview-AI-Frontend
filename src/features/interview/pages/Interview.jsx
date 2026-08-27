@@ -4,11 +4,12 @@ import { Outlet, useParams } from 'react-router'
 import { useAuth } from '../../auth/hooks/useAuth'
 import { useInterview } from '../hooks/useInterview'
 import { Loader } from 'lucide-react'
+import DisplayMsg from '../../display message/components/DisplayMsg'
 
 
 const Interview = () => {
 
-  const { user, handleLogout } = useAuth()
+  const { handleLogout } = useAuth()
   const { report, getReportById } = useInterview()
   const { interviewId } = useParams()
 
@@ -22,7 +23,7 @@ const Interview = () => {
 
   return (
     <main className= 'flex lg:flex-row flex-col  h-screen overflow-hidden relative'>
-      
+       <DisplayMsg/>
       {/* navbar or Left side of page */}
       <div className='bg-int-sec-col text-[#FF8793] lg:border-r lg:border-b-0 border-b-2 lg:border-[#FF8793]  border-[#0D1C2D] lg:h-screen h-[10vw] xl:w-[20vw] lg:w-[25vw] w-full lg:px-[1.5vw] lg:py-[.5vw] px-[2vw] lg:relative absolute top-0 left-0  z-10 lg:block flex justify-between items-center '>
 

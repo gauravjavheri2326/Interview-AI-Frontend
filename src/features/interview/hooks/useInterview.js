@@ -21,6 +21,7 @@ export const useInterview = () => {
         try {
             response = await generateInterviewReport({ jobDescription, selfDescription, resumeFile })
             setReport(response.interviewReport)
+            setMsg(response.message)
             
         } catch (err) {
             setMsg(err.response?.data?.message)
@@ -31,7 +32,7 @@ export const useInterview = () => {
             setLoading(false)
         }
         
-        return response.message
+        return response.interviewReport
     }
 
     const getReportById = async (interviewId) => {
@@ -43,6 +44,7 @@ export const useInterview = () => {
             setReport(response.interviewReport)
         } catch (err) {
             console.log(err)
+            return null
         } finally {
             setLoading(false)
         }

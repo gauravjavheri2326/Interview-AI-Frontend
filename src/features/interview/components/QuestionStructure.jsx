@@ -8,7 +8,7 @@ const QuestionStructure = ({ icon: Icon, title, questionKey, }) => {
     
 
   return (
-    <div>
+    <div className='min-h-screen'>
         <div className='uppercase flex items-center justify-between mb-[3vw]'>
             <h1 className='text-[#B9C8DE] 2xl:text-[1.05vw] lg:text-[1.5vw] md:text-[3vw] text-xs'>{title}</h1>
             <h3 className='text-[#FFB2B8] 2xl:text-[1.05vw] lg:text-[1.5vw] md:text-[3vw] text-xs'>{question?.length || 0} Questions Generated</h3>

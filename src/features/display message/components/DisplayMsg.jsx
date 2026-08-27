@@ -23,7 +23,7 @@ const DisplayMsg = () => {
 
   return (
     <div className="absolute pointer-events-none z-9999 h-screen w-full bg-transparent flex justify-center">
-        <div className={`absolute bottom-[15%] flex gap-[.5vw] px-[2vw] py-[1vw] rounded-xl ${
+        <div className={`absolute bottom-[15%] flex gap-[.5vw] px-[5vw] py-[4vw] lg:px-[2vw] lg:py-[1vw] rounded-xl ${
           msg ? 
           "block":
           "hidden"

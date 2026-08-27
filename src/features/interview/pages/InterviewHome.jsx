@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+
 import { useInterview } from '../hooks/useInterview'
 import { TriangleAlert, SignalHigh, Info, BriefcaseBusiness, NotebookText } from 'lucide-react'
 
