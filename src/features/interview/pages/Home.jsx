@@ -36,7 +36,7 @@ const Home = () => {
 
   return (
     // pending responsive
-    <main className="home-main min-h-screen w-full flex lg:items-center lg:justify-center flex-col lg:gap-5 md:gap-[3vw] gap-[5vw] relative md:py-[10vw] py-[20vw] 2xl:px-[2vw] px-[2vw] xl:py-[5vw] lg:py-[8vw]">
+    <main className="home-main min-h-screen w-full flex lg:items-center lg:justify-center flex-col lg:gap-5 md:gap-[3vw] gap-[5vw] relative md:py-[10vw] py-[20vw] 2xl:px-[2vw] px-[3vw] xl:py-[5vw] lg:py-[8vw]">
         <DisplayMsg/>
         
         {/* name & logout button */}
@@ -61,7 +61,7 @@ const Home = () => {
         </div>
 
         {/* Field to fill data  */}
-        <div className='xl:h-[80vh] min-h-[80vh] xl:w-[70vw] w-full flex lg:flex-center lg:flex-row flex-col lg:gap-[1vw] lg:px-0 px-[5vw]'>
+        <div className='xl:h-[80vh] min-h-[80vh] xl:w-[70vw] w-full flex lg:flex-center lg:flex-row flex-col lg:gap-[1vw] lg:px-0 px-[2vw]'>
             
             {/* Enter Job Description */}
             <div className="lg:h-full h-2/5 lg:w-1/2 w-full">
@@ -157,19 +157,19 @@ const Home = () => {
         {/* Recent report lis  */}
         {
             reports?.length > 0 && (
-                <section className='w-full 2xl:mt-[2vw] xl:mt-[1.7vw] lg:mt-[1.8vw] mt-[2vw]'>
-                    <h2 className='text-[#e1034d] uppercase font-bold text-center xl:text-[2vw] text-[6vw] 2xl:mb-[2vw] xl:mb-[1.7vw] lg:mb-[2vw] mb-[2vw] underline'>My Recent Interview Plans</h2>
-                    <div className='w-full grid lg:grid-cols-3 lg:gap-[0.5vw] gap-[2vw]'>
+                <section className='w-full 2xl:mt-[2vw] xl:mt-[1.7vw] lg:mt-[1.8vw] mt-[5vw]'>
+                    <h2 className='text-[#e1034d] uppercase font-extrabold text-center xl:text-[2vw] text-[6vw] 2xl:mb-[2vw] xl:mb-[1.7vw] lg:mb-[2vw] mb-[8vw] underline'>My Recent Interview Plans</h2>
+                    <div className='w-full grid lg:grid-cols-3 lg:gap-[0.5vw] gap-[2.5vw]'>
                         {reports.map(report => (
                             <div
                                 key={report._id}
                                 className='bg-[#1a1f27] rounded-2xl cursor-pointer 2xl:h-[5vw] xl:h-[7vw] h-[30vw] 2xl:p-[0.8vw] xl:p-[1vw] p-[3vw] 2xl:leading-[1.5vw] xl:leading-[1.6vw] leading-[7vw]'
                                 onClick={() => navigate(`/interview/${report._id}`)}
                             >
-                                <h3 className='text-[#FF506D] font-semibold 2xl:text-[1.4vw] xl:text-[1.5vw] text-[6.5vw] uppercase'>{report.jobTitle || 'Untitled Position'}</h3>
+                                <h3 className='text-[#FF506D] font-bold 2xl:text-[1.4vw] xl:text-[1.5vw] text-[6.5vw] uppercase'>{report.jobTitle || 'Untitled Position'}</h3>
                                 <p className='2xl:text-[1vw] xl:text-[1.1vw] text-[4.5vw]'>
                                     Generated on {" "}
-                                    {new Date(report.createdAt).toLocaleDateString()}
+                                    {new Date(report.createdAt).toLocaleDateString("en-GB")}
                                 </p>
                             </div>
                         ))}
