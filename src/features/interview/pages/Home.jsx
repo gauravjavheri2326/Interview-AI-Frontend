@@ -35,7 +35,7 @@ const Home = () => {
     
 
   return (
-    <main className="home-main min-h-screen w-full flex lg:items-center lg:justify-center flex-col lg:gap-5 md:gap-[3vw] gap-[5vw] relative md:py-[10vw] py-[20vw] 2xl:px-[2vw] px-[3vw] xl:py-[5vw] lg:py-[8vw] overflow-x-hidden">
+    <main className="home-main min-h-screen w-full overflow-x-hidden flex lg:items-center lg:justify-center flex-col lg:gap-5 md:gap-[3vw] gap-[5vw] relative md:py-[10vw] py-[20vw] 2xl:px-[2vw] px-[3vw] xl:py-[5vw] lg:py-[8vw] ">
         <DisplayMsg/>
         
         {/* name & logout button */}
@@ -158,7 +158,7 @@ const Home = () => {
             reports?.length > 0 && (
                 <section className='w-full 2xl:mt-[2vw] xl:mt-[1.7vw] lg:mt-[1.8vw] mt-[5vw]'>
                     
-                    <h2 className='text-[#e1034d] uppercase font-extrabold text-center xl:text-[2vw] text-[6vw] 2xl:mb-[2vw] xl:mb-[1.7vw] lg:mb-[2vw] mb-[8vw] underline'>My Recent Interview Plans</h2>
+                    <h2 className='text-[#e1034d] font-extrabold text-center xl:text-[2vw] text-[6vw] 2xl:mb-[2vw] xl:mb-[1.7vw] lg:mb-[2vw] mb-[8vw] '>My Recent Interview Plans</h2>
                     
                     {/* All reports list */}
                     <div className='w-full grid lg:grid-cols-3 lg:gap-[0.5vw] gap-[2.5vw]'>
