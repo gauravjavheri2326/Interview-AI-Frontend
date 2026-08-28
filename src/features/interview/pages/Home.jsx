@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { CloudUpload, MoveRight, CircleUserRound, FolderCheck, Loader } from 'lucide-react'
+import { CloudUpload, MoveRight, CircleUserRound, FolderCheck, Loader, Trash2 } from 'lucide-react'
 import { useInterview } from '../hooks/useInterview'
 import { useNavigate } from 'react-router'
 import { useAuth } from '../../auth/hooks/useAuth'
@@ -9,7 +9,7 @@ const Home = () => {
 
     
 
-    const { loading, generateReport, reports, getReports } = useInterview()
+    const { loading, generateReport, reports, getReports, deleteReport } = useInterview()
     const [jobDescription, setJobDescription] = useState("")
     const [selfDescription, setSelfDescription] = useState("")
     const [resumeFile, setResumeFile] = useState(null)
@@ -35,12 +35,11 @@ const Home = () => {
     
 
   return (
-    // pending responsive
-    <main className="home-main min-h-screen w-full flex lg:items-center lg:justify-center flex-col lg:gap-5 md:gap-[3vw] gap-[5vw] relative md:py-[10vw] py-[20vw] 2xl:px-[2vw] px-[3vw] xl:py-[5vw] lg:py-[8vw]">
+    <main className="home-main min-h-screen w-full flex lg:items-center lg:justify-center flex-col lg:gap-5 md:gap-[3vw] gap-[5vw] relative md:py-[10vw] py-[20vw] 2xl:px-[2vw] px-[3vw] xl:py-[5vw] lg:py-[8vw] overflow-x-hidden">
         <DisplayMsg/>
         
         {/* name & logout button */}
-        <div className='w-full h-[3vw] absolute z-1  lg:top-0 top-[3.3vw] flex items-center justify-between 2xl:px-10 px-2'>
+        <div className='w-full h-[3vw] absolute z-5  lg:top-0 top-[3.3vw] flex items-center justify-between 2xl:px-10 lg:pr-0 pr-[5vw]'>
             
             <div className='flex items-center h-full gap-1 text-[#FFDADB] text-lg'>
                 <CircleUserRound size={22} color="#E61E50" />
@@ -61,7 +60,7 @@ const Home = () => {
         </div>
 
         {/* Field to fill data  */}
-        <div className='xl:h-[80vh] min-h-[80vh] xl:w-[70vw] w-full flex lg:flex-center lg:flex-row flex-col lg:gap-[1vw] lg:px-0 px-[2vw]'>
+        <div className='xl:h-[80vh] min-h-[80vh] xl:w-[70vw] w-full flex lg:flex-center lg:flex-row flex-col lg:gap-[1vw] lg:px-0'>
             
             {/* Enter Job Description */}
             <div className="lg:h-full h-2/5 lg:w-1/2 w-full">
@@ -154,26 +153,49 @@ const Home = () => {
 
         </div>
         
-        {/* Recent report lis  */}
+        {/* Recent reports section  */}
         {
             reports?.length > 0 && (
                 <section className='w-full 2xl:mt-[2vw] xl:mt-[1.7vw] lg:mt-[1.8vw] mt-[5vw]'>
+                    
                     <h2 className='text-[#e1034d] uppercase font-extrabold text-center xl:text-[2vw] text-[6vw] 2xl:mb-[2vw] xl:mb-[1.7vw] lg:mb-[2vw] mb-[8vw] underline'>My Recent Interview Plans</h2>
+                    
+                    {/* All reports list */}
                     <div className='w-full grid lg:grid-cols-3 lg:gap-[0.5vw] gap-[2.5vw]'>
+                        
                         {reports.map(report => (
+                            
+                            // All Reports mapping
                             <div
                                 key={report._id}
-                                className='bg-[#1a1f27] rounded-2xl cursor-pointer 2xl:h-[5vw] xl:h-[7vw] h-[30vw] 2xl:p-[0.8vw] xl:p-[1vw] p-[3vw] 2xl:leading-[1.5vw] xl:leading-[1.6vw] leading-[7vw]'
+                                className='bg-[#1a1f27] rounded-2xl cursor-pointer flex lg:justify-between 2xl:h-[5vw] xl:h-[7vw] h-[30vw] 2xl:p-[0.8vw] xl:p-[1vw] p-[3vw] 2xl:leading-[1.5vw] xl:leading-[1.6vw] leading-[7vw]   hover:bg-[#233143] transition-colors duration-300 ease-linear'
                                 onClick={() => navigate(`/interview/${report._id}`)}
                             >
-                                <h3 className='text-[#FF506D] font-bold 2xl:text-[1.4vw] xl:text-[1.5vw] text-[6.5vw] uppercase'>{report.jobTitle || 'Untitled Position'}</h3>
-                                <p className='2xl:text-[1vw] xl:text-[1.1vw] text-[4.5vw]'>
-                                    Generated on {" "}
-                                    {new Date(report.createdAt).toLocaleDateString("en-GB")}
-                                </p>
+
+                                {/* Job Title and date when it created  */}
+                                <div>
+                                    <h3 className='text-[#FF506D] font-bold 2xl:text-[1.4vw] xl:text-[1.5vw] text-[6.5vw] uppercase'>{report.jobTitle || 'Untitled Position'}</h3>
+
+                                    <p className='2xl:text-[1vw] xl:text-[1.1vw] text-[4.5vw]'>
+                                        Generated on {" "}
+                                        {new Date(report.createdAt).toLocaleDateString("en-GB")}
+                                    </p>
+                                </div>
+
+                                {/* delete icon  */}
+                                <Trash2 
+                                    className='lg:size-[1.5vw] hover:text-[#e1034d] transition-colors duration-300 ease-linear'
+                                    onClick={(e) => {
+                                        e.stopPropagation()
+                                        deleteReport(report._id)
+                                    }}
+                                />
                             </div>
+
                         ))}
+
                     </div>
+
                 </section>
             )
         }

@@ -1,5 +1,5 @@
 import { useContext } from "react"
-import { getAllInterviewReports, generateInterviewReport, getInterviewReportById } from "../services/interview.api.js"
+import { getAllInterviewReports, generateInterviewReport, getInterviewReportById, deleteInterviewReport } from "../services/interview.api.js"
 import { InterviewContext } from "../interview.context.jsx"
 import { MsgContext } from "../../display message/message.context.jsx"
 
@@ -64,7 +64,6 @@ export const useInterview = () => {
         let response = null
         try {
             response = await getAllInterviewReports()
-            console.log(response)
             setReports(response?.interviewReports || [])
         } catch (err) {
             console.log(err)
@@ -75,6 +74,23 @@ export const useInterview = () => {
         return response?.interviewReports || [] 
     }
 
-    return { loading, report, reports, generateReport, getReportById, getReports }
+    const deleteReport = async (interviewId) => {
+        try {
+            const response = await deleteInterviewReport(interviewId)
+
+            setMsg(response?.data.message)
+            setStatus(response?.data.status)
+
+            setReports(prev =>
+                prev.filter(report => report._id !== interviewId)
+            )
+        } catch (err) {
+            console.log(err)
+            setMsg(err.response?.data?.message || "Failed to delete report")
+            setStatus(err.response?.data?.status || 500)
+        }
+    }
+
+    return { loading, report, reports, generateReport, getReportById, getReports, deleteReport }
 
 }
