@@ -3,7 +3,7 @@ import { Link } from 'react-router'
 import "../auth.form.css"
 import { useAuth } from '../hooks/useAuth'
 import { useNavigate } from 'react-router'
-import { Loader, EyeOff, Eye, TriangleAlert } from 'lucide-react'
+import { Loader, EyeOff, Eye } from 'lucide-react'
 import { MsgContext } from '../../display message/message.context'
 import DisplayMsg from '../../display message/components/DisplayMsg'
 
@@ -14,12 +14,10 @@ const Login = () => {
   const navigate = useNavigate()
 
   const msgContext = useContext(MsgContext)
-
   const { setStatus, setMsg } = msgContext
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const [error, setError] = useState('')
   const [showPass, setShowPass] = useState(false)
 
   const handleSubmit = async (e) => {

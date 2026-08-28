@@ -9,6 +9,7 @@ export const useInterview = () => {
     const context = useContext(InterviewContext)
     const msgContext = useContext(MsgContext)
     const { setStatus, setMsg } = msgContext
+    
     if (!context) {
         throw new Error("useInterview must be used within an InterviewPovider")
     }
@@ -21,6 +22,12 @@ export const useInterview = () => {
         try {
             response = await generateInterviewReport({ jobDescription, selfDescription, resumeFile })
             setReport(response.interviewReport)
+
+            setReports(prev => [
+                response.interviewReport,
+                ...prev
+            ])
+
             setMsg(response.message)
             
         } catch (err) {
@@ -57,14 +64,15 @@ export const useInterview = () => {
         let response = null
         try {
             response = await getAllInterviewReports()
-            setReports(response.interviewReports)
+            console.log(response)
+            setReports(response?.interviewReports || [])
         } catch (err) {
             console.log(err)
         } finally {
             setLoading(false)
         }
 
-        return response.interviewReports
+        return response?.interviewReports || [] 
     }
 
     return { loading, report, reports, generateReport, getReportById, getReports }
