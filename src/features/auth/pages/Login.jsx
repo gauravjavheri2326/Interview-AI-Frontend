@@ -42,7 +42,7 @@ const Login = () => {
 
   return (
     <main className='main-auth'>
-      <DisplayMsg/>
+      {/* <DisplayMsg/> */}
       <div className='flex flex-col gap-5 lg:w-auto md:w-[50%] w-[80%]'>
         <h1>Login</h1>
 

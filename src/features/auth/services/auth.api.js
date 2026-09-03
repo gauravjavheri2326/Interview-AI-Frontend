@@ -61,7 +61,7 @@ export async function getMe() {
         })
         return response.data
     } catch (err) {
-        console.log(err.response?.data)  
+        throw(err.response?.data?.message)  
     }
 
 }

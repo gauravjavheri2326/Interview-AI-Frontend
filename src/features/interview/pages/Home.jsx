@@ -36,7 +36,7 @@ const Home = () => {
 
   return (
     <main className="home-main min-h-screen w-full overflow-x-hidden flex lg:items-center lg:justify-center flex-col lg:gap-5 md:gap-[3vw] gap-[5vw] relative md:py-[10vw] py-[20vw] 2xl:px-[2vw] px-[3vw] xl:py-[5vw] lg:py-[8vw] ">
-        <DisplayMsg/>
+        {/* <DisplayMsg/> */}
         
         {/* name & logout button */}
         <div className='w-full h-[3vw] absolute z-5  lg:top-0 top-[3.3vw] flex items-center justify-between 2xl:px-10 lg:pr-0 pr-[5vw]'>

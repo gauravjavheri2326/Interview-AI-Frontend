@@ -31,7 +31,6 @@ const Register = () => {
       setPassword('')
       setMsg(data.message) 
     } catch (err) {
-      console.log(err.response?.data?.message);
       setMsg(err.response?.data?.message)
       setStatus(err.response?.status)
     }
@@ -45,7 +44,7 @@ const Register = () => {
 
   return (
     <main className='main-auth'>
-      <DisplayMsg/>
+      {/* <DisplayMsg/> */}
       <div className='flex flex-col gap-5 lg:w-auto md:w-[50%] w-[80%]'>
         <h1>Register</h1>
 
