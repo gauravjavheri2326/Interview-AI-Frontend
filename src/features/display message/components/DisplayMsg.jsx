@@ -22,16 +22,16 @@ const DisplayMsg = () => {
     
 
   return (
-    <div className="fixed pointer-events-none z-9999 h-screen w-full bg-transparent flex justify-center px-[5vw]">
-        <div className={`absolute bottom-[15%] flex gap-[.5vw] px-[5vw] py-[4vw] lg:px-[2vw] lg:py-[1vw] rounded-xl ${
+    <div className="fixed pointer-events-none z-9999 h-screen w-full bg-transparent flex justify-center ">
+        <div className={`absolute mx-[3vw] bottom-[25%] flex gap-[.5vw] px-[5vw] py-[4vw] lg:px-[2vw] lg:py-[1vw] rounded-xl ${
           msg ? 
           "block":
           "hidden"
         }
         ${
             status ? 
-            "bg-[#e61e503a] text-[#E61E50]":
-            "bg-[#4e67853a] text-[#4e6785]"
+            "bg-[#FF8793] text-[#E61E50]":
+            "bg-[#B9C8DE] text-[#69788C]"
         }
         `}>
               {status ? <TriangleAlert className='scale-80' /> : <CircleCheck className='scale-80' />}

@@ -4,8 +4,6 @@ import { Outlet, useParams } from 'react-router'
 import { useAuth } from '../../auth/hooks/useAuth'
 import { useInterview } from '../hooks/useInterview'
 import { Loader } from 'lucide-react'
-import DisplayMsg from '../../display message/components/DisplayMsg'
-
 
 const Interview = () => {
 
@@ -23,7 +21,6 @@ const Interview = () => {
 
   return (
     <main className= 'flex lg:flex-row flex-col  h-screen overflow-hidden relative'>
-       {/* <DisplayMsg/> */}
       {/* navbar or Left side of page */}
       <div className='bg-int-sec-col text-[#FF8793] lg:border-r lg:border-b-0 border-b-2 lg:border-[#FF8793]  border-[#0D1C2D] lg:h-screen h-[10vw] xl:w-[20vw] lg:w-[25vw] w-full lg:px-[1.5vw] lg:py-[.5vw] px-[2vw] lg:relative absolute top-0 left-0  z-10 lg:block flex justify-between items-center '>
 
@@ -48,7 +45,7 @@ const Interview = () => {
       {/* content side or Right side of page */}
       <div className='bg-[#0D1C2D] xl:h-full xl:w-[80vw] lg:w-[75vw] flex flex-col relative overflow-auto no-scrollbar'>
 
-        <div className='bg-[#0D1C2D]   scroll w-full h-[3vw] sticky top-0 px-10 py-5 lg:flex hidden items-center justify-end lg:border-b border-[#FF8793]'>
+        <div className='bg-[#0D1C2D]  scroll w-full h-[3vw] sticky top-0 px-10 py-5 lg:flex hidden items-center justify-end lg:border-b border-[#FF8793]'>
           <div
             className='bg-[#E61E50]  rounded-xl px-3 py-1 cursor-pointer text-[#FFDADB] lg:block hidden'
             onClick={() => {
