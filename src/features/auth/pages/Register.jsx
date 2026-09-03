@@ -46,7 +46,7 @@ const Register = () => {
   return (
     <main className='main-auth'>
       <DisplayMsg/>
-      <div className='flex flex-col gap-5'>
+      <div className='flex flex-col gap-5 lg:w-auto md:w-[50%] w-[80%]'>
         <h1>Register</h1>
 
         <form onSubmit={handleSubmit}>

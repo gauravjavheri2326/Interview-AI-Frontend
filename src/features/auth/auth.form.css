@@ -7,7 +7,7 @@
 }
 @layer components {
     .main-auth {
-        @apply min-h-screen w-full flex justify-center items-center;
+        @apply min-h-screen w-full flex justify-center items-center ;
     }
 
     .main-auth h1 {
