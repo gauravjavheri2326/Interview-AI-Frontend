@@ -172,7 +172,7 @@ const Home = () => {
                 {/* Generate Button */}
                 <button
                     onClick={handleGenerateReport}
-                    className="w-full lg:h-[3vw] md:h-[8vw] h-[10vw] bg-[#e1034d] rounded-xl text-[#FFDADB] lg:mt-0 mt-[1vw]"
+                    className="cursor-pointer w-full lg:h-[3vw] md:h-[8vw] h-[10vw] bg-[#e1034d] rounded-xl text-[#FFDADB] lg:mt-0 mt-[1vw]"
                 >
 
                     {loading ? (
